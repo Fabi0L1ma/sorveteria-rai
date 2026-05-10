@@ -1,9 +1,7 @@
-﻿@*
-    For more information on enabling MVC for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
-*@
+﻿@model IEnumerable<sorveteria_rai.Models.Categoria>
 @{
+    ViewData["Title"] = "Listagem de Categoria";
 }
-
 
 <div class="d-flex justify-content-end">
     <a asp-action="CadastroCategoria" class="btn btn-purple mt-3 mb-3">
@@ -35,77 +33,43 @@
             </tr>
         </thead>
         <tbody>
-            <tr>
-                <td>Picolé Simples</td>
-                <td>Picolés tradicionais sem recheio</td>
-                <td>Ativo</td>
-                <td class="text-center">
-                    <a asp-action="" asp-route-id="" class="fa-regular fa-pen-to-square m-1 text-primary"></a>
-                    <a class="fa-regular fa-trash-can m-1 text-danger" data-bs-toggle="modal"
-                       data-bs-target="#deleteModal" style="cursor: pointer;"></a>
+            @foreach (var categoria in Model)
+            {
+                
+                <tr>
+                    <td style="width: 20%;">@Html.DisplayFor(modelItem => categoria.NomeCategoria)</td>
+                    <td style="width: 60%;">@Html.DisplayFor(modelItem => categoria.DescricaoCategoria)</td>
+                    <td style="width: 10%;">@Html.DisplayFor(modelItem => categoria.StatusCategoria)</td>
+                    <td style="width: 10%;" class="text-center">
+                        <a asp-action="" asp-route-id="" class="fa-regular fa-pen-to-square m-1 text-primary"></a>
+                        <a class="fa-regular fa-trash-can m-1 text-danger" data-bs-toggle="modal"
+                           data-bs-target="#deleteModal" style="cursor: pointer;"></a>
 
-                <div class="modal fade" id="deleteModal" tabindex="-1">
-                    <div class="modal-dialog">
-                        <div class="modal-content">
-                            <div class="modal-header">
-                                <h5 class="modal-title">Confirmação de Exclusão</h5>
-                                <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
-                            </div>
-                            <div class="modal-body">
-                                <p>Você tem certeza que deseja excluir esta categoria?</p>
-                            </div>
-                            <form asp-action="Deletar">
+                        <div class="modal fade" id="deleteModal" tabindex="-1">
+                            <div class="modal-dialog">
+                                <div class="modal-content">
+                                    <div class="modal-header">
+                                        <h5 class="modal-title">Confirmação de Exclusão</h5>
+                                        <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+                                    </div>
+                                    <div class="modal-body">
+                                        <p>Você tem certeza que deseja excluir esta categoria?</p>
+                                    </div>
+                                    <form asp-action="Deletar">
                                     
-                                <input type="hidden" name="" value="" />
+                                        <input type="hidden" name="" value="" />
                                     
-                                <div class="modal-footer">
-                                    <button type="button" class="btn btn-danger" data-bs-dismiss="modal">Cancelar</button>
-                                    <button type="submit" class="btn btn-success">Confirmar</button>
+                                        <div class="modal-footer">
+                                            <button type="button" class="btn btn-danger" data-bs-dismiss="modal">Cancelar</button>
+                                            <button type="submit" class="btn btn-success">Confirmar</button>
+                                        </div>
+                                    </form>
                                 </div>
-                            </form>
+                            </div>
                         </div>
-                    </div>
-                </div>
-                </td>
-            </tr>
-            <tr>
-                <td>Picolé Simples</td>
-                <td>Picolés tradicionais sem recheio</td>
-                <td>Ativo</td>
-                <td class="text-center">
-                    <a asp-action="" asp-route-id="" class="fa-regular fa-pen-to-square m-1 text-primary"></a>
-                    <a class="fa-regular fa-trash-can m-1 text-danger"</a>
-                </td>
-            </tr>
-            <tr>
-                <td>Picolé Simples</td>
-                <td>Picolés tradicionais sem recheio</td>
-                <td>Ativo</td>
-                <td class="text-center">
-                    <a asp-action="" asp-route-id="" class="fa-regular fa-pen-to-square m-1 text-primary"></a>
-                    <a class="fa-regular fa-trash-can m-1 text-danger"</a>
-                </td>
-            </tr>
-            <tr>
-                <td>Picolé Simples</td>
-                <td>Picolés tradicionais sem recheio</td>
-                <td>Ativo</td>
-                <td class="text-center">
-                    <a asp-action="" asp-route-id="" class="fa-regular fa-pen-to-square m-1 text-primary"></a>
-                    <a class="fa-regular fa-trash-can m-1 text-danger"</a>
-                </td>
-            </tr>
-            <tr>
-                <td>Picolé Simples</td>
-                <td>Picolés tradicionais sem recheio</td>
-                <td>Ativo</td>
-                <td class="text-center">
-                    <a asp-action="" asp-route-id="" class="fa-regular fa-pen-to-square m-1 text-primary"></a>
-                    <a class="fa-regular fa-trash-can m-1 text-danger" data-bs-toggle="modal"
-                           data-bs-target="#deleteModal-" style="cursor: pointer;"
-                    </a>
-                </td>
-            </tr>
+                    </td>
+                </tr>
+            }
         </tbody>
     </table>
     <nav aria-label="...">

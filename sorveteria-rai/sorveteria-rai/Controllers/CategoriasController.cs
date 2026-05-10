@@ -16,16 +16,22 @@ namespace sorveteria_rai.Controllers
         private readonly SorveteriaContext _context;
         private readonly CategoriaService _categoriaService;
 
-        public CategoriasController(SorveteriaContext context)
+        public CategoriasController(SorveteriaContext context, CategoriaService categoriaService)
         {
             _context = context;
+            this._categoriaService = categoriaService; 
         }
 
         public async Task<IActionResult> Index()
         {
-            var categoria = _categoriaService.ObterCategoriaAsync();
+            var categoria = await _categoriaService.ObterCategoriaAsync();
 
             return View(categoria);
+        }
+
+        public async Task<IActionResult> CadastroCategoriaAsync()
+        {
+            return View();
         }
 
         [HttpPost]

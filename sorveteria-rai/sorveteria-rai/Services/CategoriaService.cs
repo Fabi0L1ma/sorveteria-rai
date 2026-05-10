@@ -10,9 +10,10 @@ namespace sorveteria_rai.Services
         private readonly SorveteriaContext _context;
         private readonly CategoriaRepository _categoriaRepository;
 
-        public CategoriaService(SorveteriaContext context)
+        public CategoriaService(SorveteriaContext context, CategoriaRepository categoriaRepository)
         {
             this._context = context;
+            this._categoriaRepository = categoriaRepository;
         }
 
         public async Task SalvarCategoriaAsync(Categoria categoria)

@@ -1,7 +1,6 @@
-﻿@*
-    For more information on enabling MVC for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
-*@
+﻿@model sorveteria_rai.Models.Categoria
 @{
+    ViewData["Title"] = "Cadastro Categoria";
 }
 
 <h2><i style="color: #6a0dad" class="bi bi-tags me-2"></i>Categorias</h2>
@@ -11,18 +10,18 @@
 <div class="container mt-4 border border-light-subtle p-3 rounded-2 col-10 ms-5">
    
     <h5 style="color: #6a0dad">Cadastro de Categoria</h5>
-    <form class="row g-3 d-flex flex-column mt-3">
+    <form class="row g-3 d-flex flex-column mt-3" asp-action="SalvarCategoria">
         <div class="col-md-12">
             <label class="form-label">Nome da categoria <span class="text-danger">*</span></label>
-            <input type="text" class="form-control" id="nomeCategoria" placeholder="Ex.: Picolé Simples">
+            <input asp-for="NomeCategoria" type="text" class="form-control" id="nomeCategoria" placeholder="Ex.: Picolé Simples">
         </div>
         <div class="col-md-12">
             <label class="form-label">Descrição</label>
-            <textarea class="form-control" id="descricaoCategoria" rows="4" placeholder="Ex.: Picolés tradicionais sem recheio"></textarea>
+            <textarea asp-for="DescricaoCategoria" class="form-control" id="descricaoCategoria" rows="4" placeholder="Ex.: Picolés tradicionais sem recheio"></textarea>
         </div>
         <div class="col-md-12">
             <label class="form-label">Status <span class="text-danger">*</span></label>
-            <select id="statusCategoria" class="form-select">
+            <select asp-for="StatusCategoria" id="statusCategoria" class="form-select">
                 <option disabled selected>Selecione...</option>
                 <option value="1">Ativo</option>
                 <option value="2">Pendente</option>

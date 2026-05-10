@@ -1,6 +1,7 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.DependencyInjection;
 using sorveteria_rai.Data;
+using sorveteria_rai.Repository;
 using sorveteria_rai.Services;
 var builder = WebApplication.CreateBuilder(args);
 builder.Services.AddDbContext<SorveteriaContext>(options =>
@@ -9,6 +10,7 @@ builder.Services.AddDbContext<SorveteriaContext>(options =>
 // Add services to the container.
 builder.Services.AddControllersWithViews();
 builder.Services.AddScoped<CategoriaService>();
+builder.Services.AddScoped<CategoriaRepository>();
 
 var app = builder.Build();
 
