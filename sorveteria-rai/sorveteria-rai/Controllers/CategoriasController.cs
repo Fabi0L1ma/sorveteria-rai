@@ -7,21 +7,39 @@ using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
 using sorveteria_rai.Data;
 using sorveteria_rai.Models;
+using sorveteria_rai.Services;
 
 namespace sorveteria_rai.Controllers
 {
     public class CategoriasController : Controller
     {
-        private readonly sorveteriaContext _context;
+        private readonly SorveteriaContext _context;
+        private readonly CategoriaService _categoriaService;
 
-        public CategoriasController(sorveteriaContext context)
+        public CategoriasController(SorveteriaContext context)
         {
             _context = context;
         }
 
         public async Task<IActionResult> Index()
         {
-            return View();
+            var categoria = _categoriaService.ObterCategoriaAsync();
+
+            return View(categoria);
+        }
+
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public async Task<IActionResult> SalvarCategoria(Categoria categoria)
+        {
+            if (!ModelState.IsValid)
+            {
+                return View(categoria);
+            }
+
+            await _categoriaService.SalvarCategoriaAsync(categoria);
+
+            return RedirectToAction(nameof(Index));
         }
 
     }

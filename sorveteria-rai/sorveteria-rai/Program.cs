@@ -1,12 +1,14 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.DependencyInjection;
 using sorveteria_rai.Data;
+using sorveteria_rai.Services;
 var builder = WebApplication.CreateBuilder(args);
-builder.Services.AddDbContext<sorveteriaContext>(options =>
+builder.Services.AddDbContext<SorveteriaContext>(options =>
     options.UseNpgsql(builder.Configuration.GetConnectionString("SorveteriaContext") ?? throw new InvalidOperationException("Connection string 'SorveteriaContext' not found.")));
 
 // Add services to the container.
 builder.Services.AddControllersWithViews();
+builder.Services.AddScoped<CategoriaService>();
 
 var app = builder.Build();
 
