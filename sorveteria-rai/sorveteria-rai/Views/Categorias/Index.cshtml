@@ -28,7 +28,7 @@
             <tr>
                 <th scope="col">Categoria</th>
                 <th scope="col">Descrição</th>
-                <th scope="col">Status</th>
+                <th class="text-center" scope="col">Status</th>
                 <th class="text-center" scope="col">Ações</th>
             </tr>
         </thead>
@@ -39,7 +39,20 @@
                 <tr>
                     <td style="width: 20%;">@Html.DisplayFor(modelItem => categoria.NomeCategoria)</td>
                     <td style="width: 60%;">@Html.DisplayFor(modelItem => categoria.DescricaoCategoria)</td>
-                    <td style="width: 10%;">@Html.DisplayFor(modelItem => categoria.StatusCategoria)</td>
+                    <td class="text-center" style="width: 10%;">
+                        @if(categoria.StatusCategoria == 1)
+                        {
+                            <span class="badge bg-success">Ativo</span>
+                        }
+                        else if(categoria.StatusCategoria == 2)
+                        {
+                            <span class="badge bg-warning text-dark">Pendente</span>
+                        }
+                        else
+                        {
+                            <span class="badge bg-danger">Cancelado</span>
+                        }
+                    </td>
                     <td style="width: 10%;" class="text-center">
                         <a asp-action="" asp-route-id="" class="fa-regular fa-pen-to-square m-1 text-primary"></a>
                         <a class="fa-regular fa-trash-can m-1 text-danger" data-bs-toggle="modal"
