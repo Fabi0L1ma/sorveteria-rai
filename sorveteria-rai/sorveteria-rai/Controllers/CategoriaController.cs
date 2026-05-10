@@ -8,5 +8,10 @@ namespace sorveteria_rai.Controllers
         {
             return View();
         }
+
+        public IActionResult CadastroCategoria()
+        {
+            return View();
+        }
     }
 }
